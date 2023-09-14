@@ -4,3 +4,6 @@ sass.sh
 styles/css/.DS_Store
 
 lib/.DS_Store
+
+/vendor/
+composer.lock
