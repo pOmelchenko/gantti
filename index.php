@@ -1,7 +1,7 @@
 <?php
 
-require('lib/gantti.php'); 
-require('data.php'); 
+require(__DIR__ . '/lib/gantti.php');
+$data = require(__DIR__ . '/data.php');
 
 date_default_timezone_set('UTC');
 setlocale(LC_ALL, 'en_US');
@@ -18,7 +18,7 @@ $gantti = new Gantti($data, array(
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  
+
   <title>Mahatma Gantti – A simple PHP Gantt Class</title>
   <meta charset="utf-8" />
 
@@ -40,7 +40,7 @@ $gantti = new Gantti($data, array(
 
 </header>
 
-<?php echo $gantti ?>
+<?= $gantti ?>
 
 <article>
 
@@ -64,49 +64,45 @@ $gantti = new Gantti($data, array(
 
 <h2>Usage</h2>
 
-<p><pre><code><?php $code = "
-<?php
-
-require('lib/gantti.php'); 
-
-date_default_timezone_set('UTC');
-setlocale(LC_ALL, 'en_US');
-
-\$data = array();
-
-\$data[] = array(
-  'label' => 'Project 1',
-  'start' => '2012-04-20', 
-  'end'   => '2012-05-12'
-);
-
-\$data[] = array(
-  'label' => 'Project 2',
-  'start' => '2012-04-22', 
-  'end'   => '2012-05-22', 
-  'class' => 'important',
-);
-
-\$data[] = array(
-  'label' => 'Project 3',
-  'start' => '2012-05-25', 
-  'end'   => '2012-06-20'
-  'class' => 'urgent',
-);
-
-\$gantti = new Gantti(\$data, array(
-  'title'      => 'Demo',
-  'cellwidth'  => 25,
-  'cellheight' => 35
-));
-
-echo \$gantti;
-
-?>
-
-";
-
-echo htmlentities(trim($code)); ?>
+<p><pre><code><?= htmlentities(trim(
+                <<<'PHP'
+    <?php
+    
+    require(__DIR__ . 'lib/gantti.php'); 
+    
+    date_default_timezone_set('UTC');
+    setlocale(LC_ALL, 'en_US');
+    
+    $data = [
+        [
+            'label' => 'Project 1',
+            'start' => '2012-04-20', 
+            'end'   => '2012-05-12'
+        ],
+        [
+            'label' => 'Project 2',
+            'start' => '2012-04-22', 
+            'end'   => '2012-05-22', 
+            'class' => 'important',
+        ],
+        [
+            'label' => 'Project 3',
+            'start' => '2012-05-25', 
+            'end'   => '2012-06-20',
+            'class' => 'urgent',
+        ],
+    ];
+    
+    $gantti = new Gantti($data, [
+        'title'      => 'Demo',
+        'cellwidth'  => 25,
+        'cellheight' => 35
+    ]);
+    
+    echo $gantti;
+    
+    PHP
+            )) ?>
 </pre></code></p>
 
 <h2>Data</h2>
@@ -114,13 +110,13 @@ echo htmlentities(trim($code)); ?>
 <p>Data is defined as an associative array (see the example above).</p>
 
 <p>
-  For each project you get the following options: 
-  
+  For each project you get the following options:
+
   <ul>
-    <li>label: The label will be displayed in the sidebar</li>  
-    <li>start: The start date. Must be in the following format: YYYY-MM-DD</li>  
-    <li>end:   The end date. Must be in the following format: YYYY-MM-DD</li>  
-    <li>class: An optional class name. (available by default: important, urgent)</li>  
+    <li>label: The label will be displayed in the sidebar</li>
+    <li>start: The start date. Must be in the following format: YYYY-MM-DD</li>
+    <li>end:   The end date. Must be in the following format: YYYY-MM-DD</li>
+    <li>class: An optional class name. (available by default: important, urgent)</li>
   </ul>
 
 </p>
@@ -143,10 +139,10 @@ echo htmlentities(trim($code)); ?>
 
 <p>
 The default stylesheet is available as .scss (<a href="http://sass-lang.com/">SASS</a>)
-It includes a set of predefined variables, which you can use to adjust the styles very easily. 
+It includes a set of predefined variables, which you can use to adjust the styles very easily.
 </p>
 <p>
-You can check out the full SASS file over here: 
+You can check out the full SASS file over here:
 <a href="https://github.com/bastianallgeier/gantti/blob/master/styles/scss/gantti.scss">https://github.com/bastianallgeier/gantti/blob/master/styles/scss/gantti.scss</a>
 </p>
 
