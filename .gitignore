@@ -6,4 +6,5 @@ styles/css/.DS_Store
 lib/.DS_Store
 
 /vendor/
+.phpunit.result.cache
 composer.lock
